@@ -67,41 +67,6 @@ namespace Timelogger.Api
             }
 
             app.UseMvc();
-
-            // Seed "database" with example data
-            var context = app.ApplicationServices.GetService<ApiContext>();
-            //AddExampleData(context);
-        }
-
-        private static void AddExampleData(ApiContext context)
-        {
-            var testProject1 = new Project
-            {
-                Id = 4,
-                Name = "e-conomic Interview",
-                TimeSpent = 10,
-                Comment = "TODO: focus"
-            };
-            var testProject2 = new Project
-            {
-                Id = 2,
-                Name = "case: coding",
-                TimeSpent = 100,
-                Comment = "TODO: programming"
-            };
-            var testProject3 = new Project
-            {
-                Id = 3,
-                Name = "case: presentation",
-                TimeSpent = 1000,
-                Comment = "TODO: powerpoint"
-            };
-
-            context.Projects.Add(testProject1);
-            context.Projects.Add(testProject2);
-            context.Projects.Add(testProject3);
-
-            context.SaveChanges();
         }
     }
 }

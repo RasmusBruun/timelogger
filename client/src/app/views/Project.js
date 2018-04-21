@@ -7,7 +7,6 @@ class Project extends React.Component {
     super(props);
     this.state = {
       projectName: "placeholder name",
-      start: new Date(),
       timer: null,
       id: props.match.params.id,
       secondsCounter: 0,
@@ -88,11 +87,7 @@ class Project extends React.Component {
             >
               {this.state.startOrPause}
             </button>
-            <button
-              className="btn delete"
-              type="submit"
-              onClick={this.handleDelete}
-            >
+            <button type="submit" onClick={this.handleDelete}>
               Delete
             </button>
           </div>

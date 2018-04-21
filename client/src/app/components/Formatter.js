@@ -1,10 +1,3 @@
-// export function millisecondsToHHMMSS(number) {
-//   const date = new Date(number * 1000);
-//   return (
-//     date.getHours() - 1 + ":" + date.getMinutes() + ":" + date.getSeconds()
-//   );
-// }
-
 /// <summary>Takes a number of seconds and returns a string in the format HHMMSS </summary>
 /// <param name="seconds" type="Number">Number of seconds</param>
 /// <returns type="string">The formatted string</returns>
