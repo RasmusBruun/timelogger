@@ -4,18 +4,33 @@ import axios from "axios";
 const server = axios.create({ baseURL: "http://localhost:5000/api" });
 const context = server;
 
+export function networkErrorPopup() {
+  const popup = window.confirm(
+    "A network error occurred. Do you want to reload the page?"
+  );
+  if (popup) {
+    window.location.reload();
+  }
+}
+
 export function getEntry(id) {
   return context
     .get(`/projects/${id}`)
     .then(response => response.data)
-    .catch(error => console.log(error));
+    .catch(error => {
+      console.log(error);
+      networkErrorPopup();
+    });
 }
 
 export function getAllEntries() {
   return context
     .get("/projects")
     .then(response => response.data)
-    .catch(error => console.log(error));
+    .catch(error => {
+      console.log(error);
+      networkErrorPopup();
+    });
 }
 
 export function addEntry(n, c) {
@@ -25,7 +40,10 @@ export function addEntry(n, c) {
   return context
     .post("/projects", params)
     .then(response => console.log(response.data))
-    .catch(error => console.log(error));
+    .catch(error => {
+      console.log(error);
+      networkErrorPopup();
+    });
 }
 
 export function updateEntry(id, name, time) {
@@ -36,14 +54,20 @@ export function updateEntry(id, name, time) {
   return context
     .patch("/projects", params)
     .then(response => response.data)
-    .catch(error => console.log(error));
+    .catch(error => {
+      console.log(error);
+      networkErrorPopup();
+    });
 }
 
 export function deleteEntry(id) {
   return context
     .delete("/projects", { params: { id: id } })
     .then(response => response.data)
-    .catch(error => console.log(error));
+    .catch(error => {
+      console.log(error);
+      networkErrorPopup();
+    });
 }
 
 export default {
