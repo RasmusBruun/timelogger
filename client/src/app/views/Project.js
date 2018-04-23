@@ -74,6 +74,10 @@ class Project extends React.Component {
     this.getProject();
   }
 
+  componentWillUnmount() {
+    clearInterval(this.state.timer);
+  }
+
   render() {
     return (
       <React.Fragment>
