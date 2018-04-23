@@ -7,14 +7,14 @@ class Table extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      rows: []
+      rowsData: []
     };
   }
 
-  /// <summary>Creates table row elements from a given Project.</summary>
+  /// <summary>Creates JSX row elements from a given Project.</summary>
   /// <param name="project" type="project">Project to turn into a table row</param>
   /// <returns type="JSX:Element">Table row as JSX element </returns>
-  createRow(project) {
+  createJSXRow(project) {
     return (
       <tr key={project.id}>
         <td>{project.id}</td>
@@ -38,12 +38,12 @@ class Table extends React.Component {
     projects
       .getAllEntries()
       .then(result => {
-        let _rows = [];
+        let _rowsData = [];
         result.forEach(entry => {
-          _rows.push(this.createRow(entry));
+          _rowsData.push(entry);
         });
         this.setState({
-          rows: _rows
+          rowsData: _rowsData
         });
       })
       .catch(error => console.log(error));
@@ -53,6 +53,10 @@ class Table extends React.Component {
   }
 
   render() {
+    const rows = [];
+    this.state.rowsData.forEach(elem => {
+      rows.push(this.createJSXRow(elem));
+    });
     return (
       <table className="table">
         <thead className="thead-dark">
@@ -63,7 +67,7 @@ class Table extends React.Component {
             <th scope="col">Comment</th>
           </tr>
         </thead>
-        <tbody>{this.state.rows}</tbody>
+        <tbody>{rows}</tbody>
       </table>
     );
   }
