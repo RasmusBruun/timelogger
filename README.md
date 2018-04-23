@@ -1,6 +1,6 @@
 # case solution for e-conomic hiring task
 
-My implementation provides to views in the client:
+My implementation provides two views in the client:
 
 * The Dashboard, with an overview of projects
 * The Project page, for showing a single project
