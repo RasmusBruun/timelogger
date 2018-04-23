@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Timelogger.Entities;
 
 namespace Timelogger.Api.Controllers
@@ -7,7 +8,7 @@ namespace Timelogger.Api.Controllers
     [Route("api/[controller]")]
     public class ProjectsController : Controller
     {
-
+        private readonly Regex validationRegex = new Regex(@"^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$", RegexOptions.IgnoreCase);
         private readonly ApiContext _context;
 
         public ProjectsController(ApiContext context)
@@ -42,7 +43,7 @@ namespace Timelogger.Api.Controllers
         [ActionName("Complex")]
         public IActionResult Post(string name, string comment = "")
         {
-            if (name != null)
+            if (name != null && validationRegex.Match(name).Success && validationRegex.Match(name).Success)
             {
                 var project = new Project
                 { Name = name, TimeSpent = 0, Comment = comment };
@@ -60,7 +61,10 @@ namespace Timelogger.Api.Controllers
         [ActionName("Complex")]
         public IActionResult Update(int id, string name = "", int time = -1)
         {
-            if (id > 0 && name != null)
+            if (id > 0
+                && name != null
+                && validationRegex.Match(name).Success
+                && validationRegex.Match(name).Success)
             {
                 var project = _context.Projects.FirstOrDefault(p => p.Id == id);
                 if (name != "")

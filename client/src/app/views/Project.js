@@ -25,6 +25,7 @@ class Project extends React.Component {
     });
   }
 
+  /// <summary>Starts the timer if it's not running, stops it if it is running. On stopping the timer the new value is used to update the database.</summary>
   handleStart() {
     if (!this.state.isTimerRunning) {
       this.setState({ startOrPause: "Pause", isTimerRunning: true });
@@ -36,8 +37,9 @@ class Project extends React.Component {
       this.setState({ startOrPause: "Resume", isTimerRunning: false });
     }
   }
+  /// <summary>Deletes the Project currently being viewed, from the server database.</summary>
   handleDelete() {
-    const del = window.confirm("Are you you want to delete");
+    const del = window.confirm("Are you sure you want to delete?");
     if (del) {
       projects.deleteEntry(this.state.id);
       window.location.href = "/";
@@ -87,7 +89,7 @@ class Project extends React.Component {
             >
               {this.state.startOrPause}
             </button>
-            <button type="submit" onClick={this.handleDelete}>
+            <button type="submit" className="btn" onClick={this.handleDelete}>
               Delete
             </button>
           </div>

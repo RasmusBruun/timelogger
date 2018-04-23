@@ -1,7 +1,4 @@
-import {
-  validateString,
-  secondsToHHMMSS
-} from "../src/app/components/Formatter";
+import { validateString, secondsToHHMMSS } from "../app/components/Formatter";
 
 // validate string
 test("validateString lowercase", () => {
